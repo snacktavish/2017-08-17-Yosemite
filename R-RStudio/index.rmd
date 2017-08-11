@@ -1,0 +1,300 @@
+---
+title: "Get excited about R and RStudio!"
+author: "Julie Lowndes"
+date: "July 12, 2016"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+    number_sections: true
+---
+
+***In Progress!!! - this is a lesson I've used previously that I'm going to update a bit and use inplace of http://www.datacarpentry.org/R-ecology-lesson/00-before-we-start.html(but I'll borrow some of those concepts)***
+
+## Preamble
+
+Here is an analogy to start us off. **If you were a pilot, R is an an airplane.** You can use R to go places! With practice you'll gain skills and confidence; you can fly further distances and get through tricky situations. You will become an awesome pilot and can fly your plane anywhere. 
+
+And **if R were an airplane, RStudio is the airport**. RStudio provides support! Runways, communication and other services, and just makes your overall life easier. So although you can fly your plane without an airport and we could learn R without RStudio, that's not what we're going to do. 
+
+> We are learning R together with RStudio and its many supporting features. 
+
+Something else to start us off is to mention that you are learning a new language here. It's an ongoing process, it takes time, you'll make mistakes, it can be frustrating, but it will be overwhelmingly awesome in the long run. We all speak at least one language; it's a similar process, really. And no matter how fluent you are, you'll always be learning, you'll be trying things in new contexts, etc, just like everybody else. And just like any form of communication, there will be miscommunications but hands down we are all better off because of it. 
+
+While language is a familiar concept, programming languages are in a different context from spoken languages, but you will get to know this context with time. For example: you have a concept that there is a first meal of the day, and there is a name for that: in English it's "breakfast". So if you're learning Spanish, you could expect there is a word for this concept of a first meal. (And you'd be right: 'desayuno'). **We will get you to expect that programming languages also have words (called functions in R) for concepts as well**. You'll soon expect that there is a way to order values numerically. Or alphabetically. Or search for patterns in text. Or calculate the median. Or reorganize columns to rows. Or subset exactly what you want. We will get you increase your expectations and learn to ask and find what you're looking for.
+
+OK, let's get going.
+
+## Tidy data workflow
+
+[**Hadley Wickham**](http://hadley.nz/) has developed a ton of the tools we'll use today. 
+Here's an overview of techniques to be covered in Hadley Wickham and Garrett Grolemund of RStudio's book [**R for Data Science**](http://r4ds.had.co.nz/):
+
+
+<center><img src="img/r4ds_data-science.png" width="500px"></center>
+
+We will be focusing on: 
+
+- **Tidy**: `tidyr` to organize rows of data into unique values
+- **Transform**: `dplyr` to manipulate/wrangle data based on subsetting by rows or columns, sorting and joining
+- **Visualise**: 
+    - `ggplot2` static plots, using grammar of graphics principles
+    - `plotly` interactive plots, having hover, zoom and pan capabilities
+    
+
+
+--------
+
+To learn R and RStudio we will be using Dr. Jenny Bryan's lectures from STAT545 at UBC. I have modifed them slightly here for our purposes; to see them in their full and awesome entirety, visit [stat545-ubc.github.io](https://stat545-ubc.github.io/). Specifically, we'll be using these lectures: 
+
+- [R basics, workspace and working directory, RStudio projects](http://stat545-ubc.github.io/block002_hello-r-workspace-wd-project.html)
+- [Basic care and feeding of data in R](http://stat545-ubc.github.io/block006_care-feeding-data.html)
+
+Something we won't cover today but that will be helpful to you in the future is:
+
+- [The many flavors of R objects](http://stat545-ubc.github.io/block004_basic-r-objects.html)
+
+I've modified them in part with my own text and in part with text from Software Carpentry's [R for reproducible scientific analysis](http://swcarpentry.github.io/r-novice-gapminder/), specifically: 
+
+- [Seeking help](http://swcarpentry.github.io/r-novice-gapminder/03-seeking-help.html)
+
+
+# R basics, workspace and working directory, RStudio projects
+*(modified from Jenny Bryan's [STAT545](http://stat545-ubc.github.io/block002_hello-r-workspace-wd-project.html))*
+
+```{r setup, include = FALSE, cache = FALSE}
+knitr::opts_chunk$set(error = TRUE)
+library(htmltools)
+```
+
+## R at the command line, RStudio goodies
+
+Launch RStudio/R.
+
+Notice the default panes:
+
+  * Console (entire left)
+  * Environment/History (tabbed in upper right)
+  * Files/Plots/Packages/Help (tabbed in lower right)
+
+FYI: you can change the default location of the panes, among many other things: [Customizing RStudio](https://support.rstudio.com/hc/en-us/articles/200549016-Customizing-RStudio). 
+
+There are other great features we don't really have time for today as we walk through the IDE together. (IDE stands for integrated development environment.) Check out the [webinar](https://www.rstudio.com/resources/webinars/) and [RStudio IDE cheatsheet](https://www.rstudio.com/resources/cheatsheets/) for more. (And this is my blog post about [RStudio Awesomeness](http://jules32.github.io/resources/RStudio_intro/)).
+
+Go into the Console, where we interact with the live R process.
+
+Make an assignment and then inspect the object you just created.
+
+```{r}
+x <- 3 * 4
+x
+```
+In my head I hear, e.g., "x gets 12".
+
+All R statements where you create objects -- "assignments" -- have this form: `objectName <- value`.  
+
+I'll write it in the command line with a hashtag `#`, which is the way R comments so it won't be evaluated. 
+```{r eval = FALSE}
+# objectName <- value
+```
+
+Object names cannot start with a digit and cannot contain certain other characters such as a comma or a space. You will be wise to adopt a [convention for demarcating words](http://en.wikipedia.org/wiki/Snake_case) in names.
+
+```{r}
+# i_use_snake_case
+# other.people.use.periods
+# evenOthersUseCamelCase
+```
+
+Make an assignment
+```{r}
+this_is_a_really_long_name <- 2.5
+```
+
+To inspect this variable, instead of typing it, we can press the up arrow key and call your command history, with the most recent commands first. Let's do that, and then delete the assignment: 
+
+```{r}
+this_is_a_really_long_name
+```
+
+Another way to inspect this variable is to begin typing `this_`...and RStudio will automagically have suggested completions for you that you can select by hitting the tab key, then press return. 
+
+And another way to inspect this is by looking at the Environment pane in RStudio. 
+
+Now, let's make another assignment
+```{r}
+this_is_shorter <- 2 ^ 3
+```
+
+To inspect this, try out RStudio's completion facility: type the first few characters, press TAB, add characters until you disambiguate, then press return.
+```{r}
+this_is_shorter
+```
+
+One more:
+```{r}
+jenny_rocks <- 2
+```
+
+Let's try to inspect:
+```{r}
+jennyrocks
+```
+
+Implicit contract with the computer / scripting language: Computer will do tedious computation for you. In return, you will be completely precise in your instructions. Typos matter. Case matters. Get better at typing.
+
+Remember that this is a language, not unsimilar to English! There are times you aren't understood -- it's going to happen. There are different ways this can happen. Sometimes you'll get an error. This is like someone saying 'What?' or 'Pardon'? Error messages can also be more useful, like when they say 'I didn't understand this specific part of what you said, I was expecting something else'. That is a great type of error message. Error messages are your friend. Google them (copy-and-paste!) to figure out what they mean. 
+
+`r img(src='img/practicalDev_googleErrorMessage.jpg', width=400)`
+
+And also know that there are errors that can creep in more subtly, when you are giving information that is understood, but not in the way you meant. Like if I'm telling a story about pants and suspenders. My story makes sense; I won't get any 'pardon's or errors, but my husband (from Yorkshire) may jump in and say 'I think she means trousers and braces'. This would be a warning message. It's nice when they happen! Warning messages don't always happen--like for example if my husband isn't there to clarify. This can leave me thinking I've gotten something across that the listener (or R) interpreted very differently. And as I continue telling my story you get more and more confused... So write clean code and check your work as you go to minimize these circumstances!
+
+A moment about **logical operators and expressions**. We can ask questions about the objects we just made. 
+
+- `==` means 'is equal to'
+- `!=` means 'is not equal to'
+- `<` means ` is less than'
+- `>` means ` is greater than'
+- `<=` means ` is less than or equal to'
+- `>=` means ` is greater than or equal to'
+```{r}
+jenny_rocks == 2
+jenny_rocks <= 30
+jenny_rocks != 5
+```
+
+> Shortcuts
+You will make lots of assignments and the operator `<-` is a pain to type. Don't be lazy and use `=`, although it would work, because it will just sow confusion later. Instead, utilize **RStudio's keyboard shortcut: Alt + - (the minus sign)**.
+Notice that RStudio automagically surrounds `<-` with spaces, which demonstrates a useful code formatting practice. Code is miserable to read on a good day. Give your eyes a break and use spaces.
+RStudio offers many handy [keyboard shortcuts](https://support.rstudio.com/hc/en-us/articles/200711853-Keyboard-Shortcuts). Also, Alt+Shift+K brings up a keyboard shortcut reference card.
+
+> My most common shortcuts include command-Z (undo), and combinations of arrow keys in combination with shift/option/command (moving quickly up, down, sideways, with or without highlighting.
+
+## R functions, help pages
+
+R has a mind-blowing collection of built-in functions that are accessed like so
+
+```{r eval = FALSE, tidy = FALSE}
+# functionName(name_of_argument1 = value1, name_of_argument2 = value2, and so on)
+```
+
+Let's try using `seq()` which makes regular sequences of numbers and, while we're at it, demo more helpful features of RStudio.
+
+Type `se` and hit TAB. A pop up shows you possible completions. Specify `seq()` by typing more to disambiguate or using the up/down arrows to select. Notice the floating tool-tip-type help that pops up, reminding you of a function's arguments. If you want even more help, press F1 as directed to get the full documentation in the help tab of the lower right pane. 
+
+Type the arguments `1, 10` and hit return. 
+```{r}
+seq(1, 10)
+```
+
+We could probably infer that the `seq()` function makes a sequence, but let's learn for sure. Type (and you can autocomplete) and let's explore the help page:
+
+```{r}
+?seq 
+help(seq) # same as ?seq
+seq(from = 1, to = 10) # same as seq(1, 10); R assumes by position
+seq(from = 1, to = 10, by = 2)
+```
+
+The above also demonstrates something about how R resolves function arguments. You can always specify in `name = value` form. But if you do not, R attempts to resolve by position. So above, it is assumed that we want a sequence `from = 1` that goes `to = 10`. Since we didn't specify step size, the default value of `by` in the function definition is used, which ends up being 1 in this case. For functions I call often, I might use this resolve by position for the first
+argument or maybe the first two. After that, I always use `name = value`.
+
+
+The help page tells the name of the package in the top left, and broken down into sections:
+
+ - Description: An extended description of what the function does.
+ - Usage: The arguments of the function and their default values.
+ - Arguments: An explanation of the data each argument is expecting.
+ - Details: Any important details to be aware of.
+ - Value: The data the function returns.
+ - See Also: Any related functions you might find useful.
+ - Examples: Some examples for how to use the function.
+
+The examples can be copy-pasted into the console for you to understand what's going on. Remember we were talking about expecting there to be a function for something you want to do? Let's try it. `min()`, `max()`, `log()`...
+
+> Exercise: Talk to your neighbor(s) and look up the help file for a function you know. Try the examples, see if you learn anything new. (need ideas? `?getwd()`, `?plot()`, `?mean()`, `?log()`).
+
+Help for when you only sort of remember the function name: double-questionmark:
+```{r}
+??install 
+```
+
+
+Not all functions have (or require) arguments:
+```{r}
+date()
+```
+
+Now look at your workspace -- in the upper right pane. The workspace is where user-defined objects accumulate. You can also get a listing of these objects with commands:
+
+```{r}
+objects()
+ls()
+```
+
+If you want to remove the object named `x`, you can do this:
+
+```{r}
+rm(x)
+```
+
+To remove everything:
+
+```{r}
+rm(list = ls())
+```
+
+or click the broom in RStudio's Environment pane.
+
+> Exercise: Clear your workspace, then create a few new variables. Create a variable that is the mean of a sequence of 1-20. What's a good name for your variable? Does it matter what your 'by' argument is? Why?
+
+## Working directories, RStudio projects, R scripts 
+
+So we will talk about scripts in a moment, but first let's talk about where they should live. 
+
+*We're not going to cover workspaces today, but this is another alternative to scripts. You can learn about it in this RStudio article: [Working Directories and Workspaces](https://support.rstudio.com/hc/en-us/articles/200711843-Working-Directories-and-Workspaces).*
+
+
+### Working directory
+
+Any process running on your computer has a notion of its "working directory". In R, this is where R will look, by default, for files you ask it to load. It is also where, by default, any files you write to disk will go. You have a sense of this because whenever you go to save a Word doc or download, it asks where. You often have to navigate to put it exactly where you want it. There are a few ways to check your working directory in RStudio.
+
+You can explicitly check your working directory with:
+```{r, eval=FALSE}
+getwd()
+```
+It is also displayed at the top of the RStudio console.
+
+As a beginning R user, it's OK let your home directory or any other weird directory on your computer be R's working directory. _Very soon_, I urge you to evolve to the next level, where you organize your analytical projects into directories and, when working on Project A, set R's working directory to Project A's directory.
+
+You can set R's working directory at the command line like so. You could also do this in a script.
+
+```{r eval = FALSE}
+setwd("~/myCoolProject")
+```
+
+
+But there's a better way. A way that also puts you on the path to managing your R work like an expert.
+
+### RStudio projects
+
+Keeping all the files associated with a project organized together -- input data, R scripts, analytical results, figures -- is such a wise and common practice that RStudio has built-in support for this via its _projects_. More here: [Using Projects](https://support.rstudio.com/hc/en-us/articles/200526207-Using-Projects).
+
+Let's make one to use for the rest of today. 
+
+> Do this: File > New Project ... New Directory > Empty Project. The directory name you choose here will be the project name. Call it whatever you want (or follow me for convenience).
+
+I created a directory and, therefore RStudio project, called `software-carpentry` in a folder called `tmp` in my home directory, FYI.
+What do you notice about your RStudio pane? Look in the right corner--'software-carpentry'.
+
+Now check that the "home" directory for your project is the working directory of our current R process:
+
+```{r eval=FALSE}
+getwd()
+# "/Users/julialowndes/tmp/software-carpentry" 
+```
+
+**About paths**: The above is the absolute path: it starts at the `/Users` root and is specific to my computer (`julialowndes`) and where I saved it. So if I did an analysis with this filepath, it wouldn't work on your computer before you altered the filepath. 
+
+But with an RStudio project, your paths within this project can be relative, which means they *start* in the `software-carpentry` folder, wherever it is. So we can just use filepaths within our project from a relative place, and it can work on your computer or mine, without worrying about the absolute paths. (Analogy: I can give you directions from this building to the pub, since we're all here in this shared space already. I can't give you all directions from your home to this building and then the pub, because you all live in different places. But I can give directions relative to this buliding). 
+
