@@ -9,7 +9,7 @@ output:
     number_sections: true
 ---
 
-***In Progress!!! - this is a lesson I've used previously that I'm going to update a bit and use inplace of http://www.datacarpentry.org/R-ecology-lesson/00-before-we-start.html(but I'll borrow some of those concepts)***
+***In Progress!!! - this is a lesson I've used previously that I'm going to update a bit and use inplace of http://www.datacarpentry.org/R-ecology-lesson/00-before-we-start.html (but I'll borrow some of those concepts)***
 
 ## Preamble
 
