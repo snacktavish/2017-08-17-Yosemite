@@ -1,17 +1,17 @@
 ---
-title: "Get excited about R and RStudio!"
+title: "Intro to R and RStudio"
 author: "Julie Lowndes"
-date: "July 12, 2016"
+date: "August 17, 2017"
 output: 
   html_document:
     toc: true
     toc_float: true
-    number_sections: true
+    number_sections: false
 ---
 
-***In Progress!!! - this is a lesson I've used previously that I'm going to update a bit and use inplace of http://www.datacarpentry.org/R-ecology-lesson/00-before-we-start.html (but I'll borrow some of those concepts)***
+# Background
 
-## Preamble
+You are all here today to learn how to code. Coding made me a better scientist because I was able to think more clearly about analyses, and become more efficient in doing so. Data scientists are creating tools that make coding more intuitive for new coders like us, and there is a wealth of awesome instruction and resources available to learn more and get help.
 
 Here is an analogy to start us off. **If you were a pilot, R is an an airplane.** You can use R to go places! With practice you'll gain skills and confidence; you can fly further distances and get through tricky situations. You will become an awesome pilot and can fly your plane anywhere. 
 
@@ -25,6 +25,7 @@ While language is a familiar concept, programming languages are in a different c
 
 OK, let's get going.
 
+<!---
 ## Tidy data workflow
 
 [**Hadley Wickham**](http://hadley.nz/) has developed a ton of the tools we'll use today. 
@@ -42,6 +43,7 @@ We will be focusing on:
     - `plotly` interactive plots, having hover, zoom and pan capabilities
     
 
+--->
 
 --------
 
@@ -54,12 +56,15 @@ Something we won't cover today but that will be helpful to you in the future is:
 
 - [The many flavors of R objects](http://stat545-ubc.github.io/block004_basic-r-objects.html)
 
-I've modified them in part with my own text and in part with text from Software Carpentry's [R for reproducible scientific analysis](http://swcarpentry.github.io/r-novice-gapminder/), specifically: 
+I've modified them in part with my own text and in part with text from Software Carpentry and Data Carpentry, specifically: 
 
-- [Seeking help](http://swcarpentry.github.io/r-novice-gapminder/03-seeking-help.html)
+- [R for reproducible scientific analysis/Seeking help](http://swcarpentry.github.io/r-novice-gapminder/03-seeking-help.html)
+- [R for data analysis and visualization of Ecological Data/Intro to R](http://www.datacarpentry.org/R-ecology-lesson/01-intro-to-r.html)
+- [R for data analysis and visualization of Ecological Data/Starting with data](http://www.datacarpentry.org/R-ecology-lesson/02-starting-with-data.html)
 
 
-# R basics, workspace and working directory, RStudio projects
+
+# R basics
 *(modified from Jenny Bryan's [STAT545](http://stat545-ubc.github.io/block002_hello-r-workspace-wd-project.html))*
 
 ```{r setup, include = FALSE, cache = FALSE}
@@ -67,7 +72,7 @@ knitr::opts_chunk$set(error = TRUE)
 library(htmltools)
 ```
 
-## R at the command line, RStudio goodies
+# R at the command line, RStudio goodies
 
 Launch RStudio/R.
 
@@ -96,6 +101,8 @@ All R statements where you create objects -- "assignments" -- have this form: `o
 I'll write it in the command line with a hashtag `#`, which is the way R comments so it won't be evaluated. 
 ```{r eval = FALSE}
 # objectName <- value
+
+## this is also how you write notes in your code to explain what you are doing.
 ```
 
 Object names cannot start with a digit and cannot contain certain other characters such as a comma or a space. You will be wise to adopt a [convention for demarcating words](http://en.wikipedia.org/wiki/Snake_case) in names.
@@ -121,24 +128,19 @@ Another way to inspect this variable is to begin typing `this_`...and RStudio wi
 
 And another way to inspect this is by looking at the Environment pane in RStudio. 
 
-Now, let's make another assignment
+Another was is to try out RStudio's completion facility: type the first few characters, press TAB, add characters until you disambiguate, then press return.
 ```{r}
-this_is_shorter <- 2 ^ 3
-```
-
-To inspect this, try out RStudio's completion facility: type the first few characters, press TAB, add characters until you disambiguate, then press return.
-```{r}
-this_is_shorter
+this_is_a_really_long_name
 ```
 
 One more:
 ```{r}
-jenny_rocks <- 2
+science_rocks <- 2
 ```
 
 Let's try to inspect:
 ```{r}
-jennyrocks
+sciencerocks
 ```
 
 Implicit contract with the computer / scripting language: Computer will do tedious computation for you. In return, you will be completely precise in your instructions. Typos matter. Case matters. Get better at typing.
@@ -147,7 +149,7 @@ Remember that this is a language, not unsimilar to English! There are times you 
 
 `r img(src='img/practicalDev_googleErrorMessage.jpg', width=400)`
 
-And also know that there are errors that can creep in more subtly, when you are giving information that is understood, but not in the way you meant. Like if I'm telling a story about pants and suspenders. My story makes sense; I won't get any 'pardon's or errors, but my husband (from Yorkshire) may jump in and say 'I think she means trousers and braces'. This would be a warning message. It's nice when they happen! Warning messages don't always happen--like for example if my husband isn't there to clarify. This can leave me thinking I've gotten something across that the listener (or R) interpreted very differently. And as I continue telling my story you get more and more confused... So write clean code and check your work as you go to minimize these circumstances!
+And also know that there are errors that can creep in more subtly, when you are giving information that is understood, but not in the way you meant. Like if I'm telling a story about tables and you're picturing where you eat breakfast and I'm talking about data. This can leave me thinking I've gotten something across that the listener (or R) interpreted very differently. And as I continue telling my story you get more and more confused... So write clean code and check your work as you go to minimize these circumstances!
 
 A moment about **logical operators and expressions**. We can ask questions about the objects we just made. 
 
@@ -158,9 +160,9 @@ A moment about **logical operators and expressions**. We can ask questions about
 - `<=` means ` is less than or equal to'
 - `>=` means ` is greater than or equal to'
 ```{r}
-jenny_rocks == 2
-jenny_rocks <= 30
-jenny_rocks != 5
+science_rocks == 2
+science_rocks <= 30
+science_rocks != 5
 ```
 
 > Shortcuts
@@ -170,12 +172,49 @@ RStudio offers many handy [keyboard shortcuts](https://support.rstudio.com/hc/en
 
 > My most common shortcuts include command-Z (undo), and combinations of arrow keys in combination with shift/option/command (moving quickly up, down, sideways, with or without highlighting.
 
+When assigning a value to an object, R does not print anything. You can force R to print the value by using parentheses or by typing the object name:
+
+```{r, purl=FALSE}
+weight_kg <- 55    # doesn't print anything
+(weight_kg <- 55)  # but putting parenthesis around the call prints the value of `weight_kg`
+weight_kg          # and so does typing the name of the object
+```
+
+Now that R has `weight_kg` in memory, we can do arithmetic with it. For
+instance, we may want to convert this weight into pounds (weight in pounds is 2.2 times the weight in kg):
+
+```{r, purl=FALSE}
+2.2 * weight_kg
+```
+
+We can also change a variable's value by assigning it a new one:
+
+```{r, purl=FALSE}
+weight_kg <- 57.5
+2.2 * weight_kg
+```
+
+This means that assigning a value to one variable does not change the values of
+other variables.  For example, let's store the animal's weight in pounds in a new
+variable, `weight_lb`:
+
+```{r, purl=FALSE}
+weight_lb <- 2.2 * weight_kg
+```
+
+and then change `weight_kg` to 100.
+
+```{r, purl=FALSE}
+weight_kg <- 100
+```
+
+What do you think is the current content of the object `weight_lb`? 126.5 or 220?
+
 ## R functions, help pages
 
 R has a mind-blowing collection of built-in functions that are accessed like so
-
 ```{r eval = FALSE, tidy = FALSE}
-# functionName(name_of_argument1 = value1, name_of_argument2 = value2, and so on)
+# functionName(argument1 = my_first_argument, argument2 = my_second_argument...)
 ```
 
 Let's try using `seq()` which makes regular sequences of numbers and, while we're at it, demo more helpful features of RStudio.
@@ -232,10 +271,10 @@ objects()
 ls()
 ```
 
-If you want to remove the object named `x`, you can do this:
+If you want to remove the object named `weight_kg`, you can do this:
 
 ```{r}
-rm(x)
+rm(weight_kg)
 ```
 
 To remove everything:
@@ -248,7 +287,7 @@ or click the broom in RStudio's Environment pane.
 
 > Exercise: Clear your workspace, then create a few new variables. Create a variable that is the mean of a sequence of 1-20. What's a good name for your variable? Does it matter what your 'by' argument is? Why?
 
-## Working directories, RStudio projects, R scripts 
+# Working directories, RStudio projects
 
 So we will talk about scripts in a moment, but first let's talk about where they should live. 
 
@@ -284,17 +323,216 @@ Let's make one to use for the rest of today.
 
 > Do this: File > New Project ... New Directory > Empty Project. The directory name you choose here will be the project name. Call it whatever you want (or follow me for convenience).
 
-I created a directory and, therefore RStudio project, called `software-carpentry` in a folder called `tmp` in my home directory, FYI.
-What do you notice about your RStudio pane? Look in the right corner--'software-carpentry'.
+I created a directory and, therefore RStudio project, called `data-carpentry` in a folder called `tmp` in my home directory, FYI.
+What do you notice about your RStudio pane? Look in the right corner--'data-carpentry'.
 
 Now check that the "home" directory for your project is the working directory of our current R process:
 
 ```{r eval=FALSE}
 getwd()
-# "/Users/julialowndes/tmp/software-carpentry" 
+# "/Users/julialowndes/tmp/data-carpentry" 
 ```
 
 **About paths**: The above is the absolute path: it starts at the `/Users` root and is specific to my computer (`julialowndes`) and where I saved it. So if I did an analysis with this filepath, it wouldn't work on your computer before you altered the filepath. 
 
-But with an RStudio project, your paths within this project can be relative, which means they *start* in the `software-carpentry` folder, wherever it is. So we can just use filepaths within our project from a relative place, and it can work on your computer or mine, without worrying about the absolute paths. (Analogy: I can give you directions from this building to the pub, since we're all here in this shared space already. I can't give you all directions from your home to this building and then the pub, because you all live in different places. But I can give directions relative to this buliding). 
+But with an RStudio project, your paths within this project can be relative, which means they *start* in the `data-carpentry` folder, wherever it is. So we can just use filepaths within our project from a relative place, and it can work on your computer or mine, without worrying about the absolute paths. (Analogy: I can give you directions from this building to the pub, since we're all here in this shared space already. I can't give you all directions from your home to this building and then the pub, because you all live in different places. But I can give directions relative to this buliding). 
 
+# Starting an analytical workflow
+
+We're going to do a few firsts here: we're going to 
+
+- create our first R script
+- load our first package
+- explore our first dataframe
+
+## Create an R script
+
+It's been great to play around in the console, but we are really here to focus on reproducible analyses, and that means saving our work in a script that can be rerun. Create a new R script by going to File > New File > R Script or going to the little plus at the top left of the RStudio console. Put a comment at the top of this script for now:  
+
+```{r}
+## my_script.R
+## Julie Lowndes lowndes@nceas.ucsb.edu
+```
+
+Click on the floppy disk to save. Give it a name ending in `.R` or `.r`, and use no spaces in the name. I named mine `my-script.r` and note that, by default, it will go in the directory associated with your project. It is traditional to save R scripts with a `.R` or `.r` suffix. 
+
+## Load packages
+
+You can also do this in RStudio by going to the 'Packages' tab in the bottom right pane and clicking 'install'.
+
+```{r, eval=FALSE,  purl=FALSE}
+install.packages('readr')
+library(readr)
+```
+
+
+## Explore the data
+
+```{r, eval=FALSE}
+## read in the data
+surveys <- readr::read_csv("https://ndownloader.figshare.com/files/2292169")
+```
+
+
+Now, we are going to start exploring data. Click on 'surveys' in the environment pane. 
+
+We are studying the species and weight of animals caught in plots in our study
+area. The dataset is stored as a comma separated value (CSV) file.
+Each row holds information for a single animal, and the columns represent:
+
+| Column           | Description                        |
+|------------------|------------------------------------|
+| record\_id       | Unique id for the observation      |
+| month            | month of observation               |
+| day              | day of observation                 |
+| year             | year of observation                |
+| plot\_id         | ID of a particular plot            |
+| species\_id      | 2-letter code                      |
+| sex              | sex of animal ("M", "F")           |
+| hindfoot\_length | length of the hindfoot in mm       |
+| weight           | weight of the animal in grams      |
+| genus            | genus of animal                    |
+| species          | species of animal                  |
+| taxa             | e.g. Rodent, Reptile, Bird, Rabbit |
+| plot\_type       | type of plot                       |
+
+
+Let's try this without using the mouse, we can type commands in our script too. Type `surveys` and execute this line by pressing 'Run' or command-return.
+
+Wow... that was a lot of output. At least it means the data loaded
+properly. Let's check the top (the first 6 lines) of this data frame using the
+function `head()`:
+
+```{r, eval=FALSE, results='show', purl=FALSE}
+head(surveys)
+```
+
+### What are data frames?
+
+Data frames are the _de facto_ data structure for most tabular data, and what we
+use for statistics and plotting. Ours is actually a tibble, which is robust type of dataframe.
+
+A data frame is the representation of data in the format of a table where the
+columns are vectors that all have the same length. Because the column are
+vectors, they all contain the same type of data (e.g., characters, integers,
+factors). For example, here is a figure depicting a data frame comprising of a
+numeric, a character and a logical vector.
+
+
+We can see this when inspecting the <b>str</b>ucture of a data frame
+with the function `str()`:
+
+```{r, eval=FALSE, purl=FALSE}
+str(surveys)
+```
+
+### Inspecting `data.frame` Objects
+
+We already saw how the functions `head()` and `str()` can be useful to check the
+content and the structure of a data frame. Here is a non-exhaustive list of
+functions to get a sense of the content/structure of the data. Let's try them out!
+
+Explore content:
+```{r, eval=FALSE}
+## explore content
+head(surveys) # first 6 rows
+tail(surveys) # last 6 rows
+tail(surveys, 10) # last 10 rows
+```
+
+Summaries:
+```{r, eval=FALSE}
+## summaries
+str(surveys) # structure of the object and information about the class, length and content of  each column
+summary(surveys) # summary statistics for each column
+```
+
+Explore size:
+```{r, eval=FALSE}
+## size
+dim(surveys) # number of rows and the number of columns (the dimensions)
+nrow(surveys) # number of rows
+ncol(surveys) # number of columns
+```
+
+Explore names:
+```{r, eval=FALSE}
+## names
+names(surveys) # column names 
+```
+
+Note: most of these functions are "generic", they can be used on other types of
+objects besides `data.frame`.
+
+
+> ### Challenge
+>
+> Based on the output of `str(surveys)`, can you answer the following questions?
+>
+> * What is the class of the object `surveys`?
+> * How many rows and how many columns are in this object?
+> * How many species have been recorded during these surveys?
+
+```{r, echo=FALSE, purl=TRUE}
+
+## Challenge
+## Based on the output of `str(surveys)`, can you answer the following questions?
+## * What is the class of the object `surveys`?
+## * How many rows and how many columns are in this object?
+## * How many species have been recorded during these surveys?
+
+```
+
+<!---
+```{r, echo=FALSE, purl=FALSE}
+## Answers
+##
+## * class: data frame
+## * how many rows: 34786,  how many columns: 13
+## * how many species: 48
+```
+--->
+
+### Clean up our R script. 
+Here is what mine looks like: 
+
+```{r, eval=FALSE}
+## my_script.R
+## Julie Lowndes lowndes@nceas.ucsb.edu
+
+## load readr library
+library(readr) # install.packages('readr')
+
+## read in the data
+surveys <- readr::read_csv("https://ndownloader.figshare.com/files/2292169")
+
+
+## explore content
+head(surveys) # first 6 rows
+tail(surveys) # last 6 rows
+tail(surveys, 10) # last 10 rows
+
+## summaries
+str(surveys) # structure of the object and information about the class, length and content of  each column
+summary(surveys) # summary statistics for each column
+
+## size
+dim(surveys) # number of rows and the number of columns (the dimensions)
+nrow(surveys) # number of rows
+ncol(surveys) # number of columns
+
+## names
+names(surveys) # column names 
+```
+
+
+### Remember...
+
+This workflow will serve you well in the future:
+
+  * Create an RStudio project for an analytical project
+  * Keep inputs there (although we didn't save data locally, we put it directly into the R workspace for now)
+  * Keep scripts there; edit them, run them in bits or as a whole from there
+  * Keep outputs there (we'll do that tomorrow)
+
+**Avoid using the mouse for pieces of your analytical workflow**, such as loading a dataset or saving a figure. This is terribly important for reproducility and for making it possible to retrospectively determine how a numerical table or PDF was actually produced (searching on local disk on filename, among `.R` files, will lead to the relevant script).
