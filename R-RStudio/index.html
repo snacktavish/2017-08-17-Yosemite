@@ -392,7 +392,7 @@ seq(from = 1, to = 10) # same as seq(1, 10); R assumes by position</code></pre>
 <pre class="r"><code>??install </code></pre>
 <p>Not all functions have (or require) arguments:</p>
 <pre class="r"><code>date()</code></pre>
-<pre><code>## [1] &quot;Mon Aug 14 12:31:32 2017&quot;</code></pre>
+<pre><code>## [1] &quot;Mon Aug 14 22:01:53 2017&quot;</code></pre>
 <p>Now look at your workspace – in the upper right pane. The workspace is where user-defined objects accumulate. You can also get a listing of these objects with commands:</p>
 <pre class="r"><code>objects()</code></pre>
 <pre><code>## [1] &quot;science_rocks&quot;              &quot;this_is_a_really_long_name&quot;
@@ -427,8 +427,17 @@ seq(from = 1, to = 10) # same as seq(1, 10); R assumes by position</code></pre>
 <pre class="r"><code>setwd(&quot;~/myCoolProject&quot;)</code></pre>
 <p>But there’s a better way. A way that also puts you on the path to managing your R work like an expert.</p>
 </div>
-<div id="rstudio-projects" class="section level3">
-<h3>RStudio projects</h3>
+</div>
+<div id="starting-an-analytical-workflow" class="section level1">
+<h1>Starting an analytical workflow</h1>
+<p>We’re going to do a few firsts here: we’re going to</p>
+<ul>
+<li>create an RStudio project (.Rproj)</li>
+<li>create our first R script</li>
+<li>explore our first dataframe</li>
+</ul>
+<div id="rstudio-projects" class="section level2">
+<h2>RStudio projects</h2>
 <p>Keeping all the files associated with a project organized together – input data, R scripts, analytical results, figures – is such a wise and common practice that RStudio has built-in support for this via its <em>projects</em>. More here: <a href="https://support.rstudio.com/hc/en-us/articles/200526207-Using-Projects">Using Projects</a>.</p>
 <p>Let’s make one to use for the rest of today.</p>
 <blockquote>
@@ -439,17 +448,8 @@ seq(from = 1, to = 10) # same as seq(1, 10); R assumes by position</code></pre>
 <pre class="r"><code>getwd()
 # &quot;/Users/julialowndes/tmp/data-carpentry&quot; </code></pre>
 <p><strong>About paths</strong>: The above is the absolute path: it starts at the <code>/Users</code> root and is specific to my computer (<code>julialowndes</code>) and where I saved it. So if I did an analysis with this filepath, it wouldn’t work on your computer before you altered the filepath.</p>
-<p>But with an RStudio project, your paths within this project can be relative, which means they <em>start</em> in the <code>data-carpentry</code> folder, wherever it is. So we can just use filepaths within our project from a relative place, and it can work on your computer or mine, without worrying about the absolute paths. (Analogy: I can give you directions from this building to the pub, since we’re all here in this shared space already. I can’t give you all directions from your home to this building and then the pub, because you all live in different places. But I can give directions relative to this buliding).</p>
+<p>But with an RStudio project, your paths within this project can be relative, which means they <em>start</em> in the <code>data-carpentry</code> folder, wherever it is. So we can just use filepaths within our project from a relative place, and it can work on your computer or mine, without worrying about the absolute paths. (Analogy: I can give you directions from this building to the pub, since we’re all here in this shared space already. I can’t give you all directions from your home to this building and then the pub, because you all live in different places. But I can give directions relative to this building).</p>
 </div>
-</div>
-<div id="starting-an-analytical-workflow" class="section level1">
-<h1>Starting an analytical workflow</h1>
-<p>We’re going to do a few firsts here: we’re going to</p>
-<ul>
-<li>create our first R script</li>
-<li>load our first package</li>
-<li>explore our first dataframe</li>
-</ul>
 <div id="create-an-r-script" class="section level2">
 <h2>Create an R script</h2>
 <p>It’s been great to play around in the console, but we are really here to focus on reproducible analyses, and that means saving our work in a script that can be rerun. Create a new R script by going to File &gt; New File &gt; R Script or going to the little plus at the top left of the RStudio console. Put a comment at the top of this script for now:</p>
@@ -457,16 +457,22 @@ seq(from = 1, to = 10) # same as seq(1, 10); R assumes by position</code></pre>
 ## Julie Lowndes lowndes@nceas.ucsb.edu</code></pre>
 <p>Click on the floppy disk to save. Give it a name ending in <code>.R</code> or <code>.r</code>, and use no spaces in the name. I named mine <code>my-script.r</code> and note that, by default, it will go in the directory associated with your project. It is traditional to save R scripts with a <code>.R</code> or <code>.r</code> suffix.</p>
 </div>
-<div id="load-packages" class="section level2">
-<h2>Load packages</h2>
-<p>You can also do this in RStudio by going to the ‘Packages’ tab in the bottom right pane and clicking ‘install’.</p>
-<pre class="r"><code>install.packages('readr')
-library(readr)</code></pre>
+<div id="create-a-data-folder" class="section level2">
+<h2>Create a data folder</h2>
+<p>Let’s also create a folder in our Project called ‘data’ (all lowercase). You can do this in your Finder/Windows Explorer as you would normally, or you can do it from RStudio, using the Files tab in the bottom right pane.</p>
+</div>
+<div id="download-and-save-our-data" class="section level2">
+<h2>Download and save our data</h2>
+<p>We will use the <code>download.file()</code> function to download data from figshare online. Once you run this, you should see the file appear in the data folder.</p>
+<pre class="r"><code>download.file(url      = &quot;https://ndownloader.figshare.com/files/2292169&quot;,
+              destfile = &quot;data/portal_data_joined.csv&quot;)</code></pre>
+<p>A few things to note with the above: the function call is written across 2 lines, and I’ve even added spaces so that the <code>=</code> line up and it’s a bit easier to read. R is OK with extra white space, so we can use some whitespace to make it easier to read.</p>
 </div>
 <div id="explore-the-data" class="section level2">
 <h2>Explore the data</h2>
+<p>Let’s read the data into R and save it to a variable called <code>surveys</code>.</p>
 <pre class="r"><code>## read in the data
-surveys &lt;- readr::read_csv(&quot;https://ndownloader.figshare.com/files/2292169&quot;)</code></pre>
+surveys &lt;- read.csv(&quot;data/portal_data_joined.csv&quot;)</code></pre>
 <p>Now, we are going to start exploring data. Click on ‘surveys’ in the environment pane.</p>
 <p>We are studying the species and weight of animals caught in plots in our study area. The dataset is stored as a comma separated value (CSV) file. Each row holds information for a single animal, and the columns represent:</p>
 <table>

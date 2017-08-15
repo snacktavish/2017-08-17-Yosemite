@@ -1,16 +1,14 @@
 ---
-title: "Reproducible workflow and version control with Git and Github"
+title: "Version control with Git and Github"
 author: "Julie Lowndes"
-date: "July 13, 2016"
+date: "August 18, 2017"
 output: 
   html_document:
     toc: true
     toc_float: true
-    number_sections: true
     #code_folding: hide
 ---
 
-***In Progress!!! - this is a lesson I've used previously that I'm going to update a bit***
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
@@ -34,7 +32,7 @@ Today, we'll interface with GitHub from our local computers using RStudio, GitHu
 
 Today, we'll only introduce the features and terminology that scientists need to learn to begin managing their projects.
 
-Here's what we'll do this morning: 
+Here's what we'll do: 
 
 1. set up git on our local computer
 1. create a repository on github.com
@@ -79,7 +77,7 @@ To get the full functionality of Github, you will eventually want to learn other
 ## Some Github terminology
 
 * **User**: A Github account for you (e.g., jules32).
-* **Organization**: The Github account for one or more user (e.g., swcarpentry).
+* **Organization**: The Github account for one or more user (e.g., datacarpentry).
 * **Repository**: A folder within the organization that includes files dedicated to a project.
 * **Local Github**: Copies of Github files located your computer.
 * **Remote Github**: Github files located on the https://github.com website.
@@ -138,7 +136,7 @@ Not only have you just set up git, you have just used the command line. We don't
 
 The *Add gitignore* option adds a document where you can identify files or file-types you want Github to ignore. These files will stay in on the local Github folder (the one on your computer), but will not be uploaded onto the web version of Github.
 
-The *Add a license* option adds a license that describes how other people can use your Github files (e.g., open source, but no one can profit from them, etc.).  This usually isn't something you need to worry about.
+The *Add a license* option adds a license that describes how other people can use your Github files (e.g., open source, but no one can profit from them, etc.).  We won't worry about this today.
 Our new repository!  
 
 Notice how the README.md file we created is automatically displayed at the bottom.
@@ -249,6 +247,8 @@ And, I typically create the following:
 * R scripts
 * etc.
 
+I'm going to copy-paste the R script we created yesterday into our R project.
+
 To make changes to the repository, you will work from your computer ("local Github").
 
 When files are changed in the local repository, these changes will be reflected in the Git tab of RStudio:
@@ -302,6 +302,10 @@ Stage the files you want to commit.  In RStudio, this involves checking the "Sta
 ![](img/push.png)
 <br />
 
+## Repeat!
+
+This time let's make a change to a file we have already committed. Maybe add some comments to our R script. 
+
 # Explore remote Github
 The files you added should be on github.com:
 <br />
@@ -338,6 +342,16 @@ You can click on the commits to see how the files changed from the previous comm
 <br />
 <br />
 
+# Update the README
+
+Documentation is a really important part of coding, so let's look at the README. If we look at GitHub.com, you can see that the README is displayed nicely like online. Let's add some more description about what our GitHub repositoryis for. 
+
+And if there's time: notice that there are a few `#`s that make the plain text into a bold header on GitHub.com. This is called Markdown. There are a few syntax rules for Markdown; we can look at them by going to the help menu. The one I want us to try out here if there's time is adding an image to it as well. Let's add this: 
+
+`![](my_plot.png)`
+
+...and then commit and push this to GitHub.com and have a look!
+
 # Clone your repository using GitHub Desktop
 
 Now we'll show you how to do this using the GitHub Desktop App and we'll repeat the process. 
@@ -349,3 +363,5 @@ Good resources:
 # Other resources
 
 - common git commands: [happy git with R - Jenny Bryan](http://happygitwithr.com/usage-git-cmds.html)
+
+

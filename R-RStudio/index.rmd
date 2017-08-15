@@ -312,10 +312,17 @@ You can set R's working directory at the command line like so. You could also do
 setwd("~/myCoolProject")
 ```
 
-
 But there's a better way. A way that also puts you on the path to managing your R work like an expert.
 
-### RStudio projects
+# Starting an analytical workflow
+
+We're going to do a few firsts here: we're going to 
+
+- create an RStudio project (.Rproj) 
+- create our first R script
+- explore our first dataframe
+
+## RStudio projects
 
 Keeping all the files associated with a project organized together -- input data, R scripts, analytical results, figures -- is such a wise and common practice that RStudio has built-in support for this via its _projects_. More here: [Using Projects](https://support.rstudio.com/hc/en-us/articles/200526207-Using-Projects).
 
@@ -335,15 +342,8 @@ getwd()
 
 **About paths**: The above is the absolute path: it starts at the `/Users` root and is specific to my computer (`julialowndes`) and where I saved it. So if I did an analysis with this filepath, it wouldn't work on your computer before you altered the filepath. 
 
-But with an RStudio project, your paths within this project can be relative, which means they *start* in the `data-carpentry` folder, wherever it is. So we can just use filepaths within our project from a relative place, and it can work on your computer or mine, without worrying about the absolute paths. (Analogy: I can give you directions from this building to the pub, since we're all here in this shared space already. I can't give you all directions from your home to this building and then the pub, because you all live in different places. But I can give directions relative to this buliding). 
+But with an RStudio project, your paths within this project can be relative, which means they *start* in the `data-carpentry` folder, wherever it is. So we can just use filepaths within our project from a relative place, and it can work on your computer or mine, without worrying about the absolute paths. (Analogy: I can give you directions from this building to the pub, since we're all here in this shared space already. I can't give you all directions from your home to this building and then the pub, because you all live in different places. But I can give directions relative to this building). 
 
-# Starting an analytical workflow
-
-We're going to do a few firsts here: we're going to 
-
-- create our first R script
-- load our first package
-- explore our first dataframe
 
 ## Create an R script
 
@@ -356,21 +356,29 @@ It's been great to play around in the console, but we are really here to focus o
 
 Click on the floppy disk to save. Give it a name ending in `.R` or `.r`, and use no spaces in the name. I named mine `my-script.r` and note that, by default, it will go in the directory associated with your project. It is traditional to save R scripts with a `.R` or `.r` suffix. 
 
-## Load packages
+## Create a data folder
 
-You can also do this in RStudio by going to the 'Packages' tab in the bottom right pane and clicking 'install'.
+Let's also create a folder in our Project called 'data' (all lowercase). You can do this in your Finder/Windows Explorer as you would normally, or you can do it from RStudio, using the Files tab in the bottom right pane. 
 
-```{r, eval=FALSE,  purl=FALSE}
-install.packages('readr')
-library(readr)
+
+## Download and save our data
+
+We will use the `download.file()` function to download data from figshare online. Once you run this, you should see the file appear in the data folder.
+
+```{r, eval=FALSE}
+download.file(url      = "https://ndownloader.figshare.com/files/2292169",
+              destfile = "data/portal_data_joined.csv")
 ```
 
+A few things to note with the above: the function call is written across 2 lines, and I've even added spaces so that the `=` line up and it's a bit easier to read. R is OK with extra white space, so we can use some whitespace to make it easier to read.
 
 ## Explore the data
 
+Let's read the data into R and save it to a variable called `surveys`. 
+
 ```{r, eval=FALSE}
 ## read in the data
-surveys <- readr::read_csv("https://ndownloader.figshare.com/files/2292169")
+surveys <- read.csv("data/portal_data_joined.csv")
 ```
 
 
