@@ -23,11 +23,13 @@ output:
 
 # What to expect
 
-This is going to be a fun workshop. The plan is to expose you to a lot of great tools that you can gain confidence using for your research. We're going to go through a lot in these two days and you don't have to remember it all — the main thing to take away is that there *are* good ways to approach your analyses — and you should have confidence in yourself that you can do find them and use them! Googling is a big part of programming. 
+This is going to be a fun workshop.  
+
+The plan is to expose you to a lot of great tools that you can gain confidence using for your research. You'll be working hands-on and doing the same things on your own computer as we do live on up on the screen. We're going to go through a lot in these two days and it is hard to remember it all at once, but you'll have confidence that you can do it and know where to look for help as you go forward with your analyses. Googling is a big part of coding. 
 
 We'll be talking about : 
 
-- how to THINK about data. And not just any data; tidy data.
+- how to THINK deliberately about data and data analysis. And not just any data; tidy data.
 - how to increase reproducibility in your science
 - how to more easily collaborate with others — most importantly with your future self!
 - how the #rstats community is fantastic. The tools we're using are developed by real people. They are building great stuff and helping people of all skill-levels learn how to use it. 
@@ -43,5 +45,18 @@ We'll be talking about :
 - [Version Control with Git, GitHub, and RStudio](https://snacktavish.github.io/2017-08-17-Yosemite/version-control) (Julie)
 
 
-## By the end of the course...
+# Data science workflow
 
+The tidy data workflow will help you think deliberately about data and your analyses. In our workshop we will be focusing **Tidy**, **Transform**, and **Visualise**.
+
+<center><img src="img/r4ds_data-science.png" width="500px"></center>
+
+
+This graphic is from Wickham & Grolemund's [**R for Data Science**](http://r4ds.had.co.nz/), which is a must-read (read it for free online or order a hardcopy from Amazon). This is a way to think deliberately and reproducibly about they way you work with data. 
+
+# By the end of the course
+
+You'll have hands-on experience with importing and wrangling data in OpenRefine and R. In R, you'll have created scripts with analysis and visualizations, and saved them locally and online on your GitHub account. It's going to be great.  
+
+
+    

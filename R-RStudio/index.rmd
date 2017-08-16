@@ -25,54 +25,28 @@ While language is a familiar concept, programming languages are in a different c
 
 OK, let's get going.
 
-<!---
-## Tidy data workflow
-
-[**Hadley Wickham**](http://hadley.nz/) has developed a ton of the tools we'll use today. 
-Here's an overview of techniques to be covered in Hadley Wickham and Garrett Grolemund of RStudio's book [**R for Data Science**](http://r4ds.had.co.nz/):
-
-
-<center><img src="img/r4ds_data-science.png" width="500px"></center>
-
-We will be focusing on: 
-
-- **Tidy**: `tidyr` to organize rows of data into unique values
-- **Transform**: `dplyr` to manipulate/wrangle data based on subsetting by rows or columns, sorting and joining
-- **Visualise**: 
-    - `ggplot2` static plots, using grammar of graphics principles
-    - `plotly` interactive plots, having hover, zoom and pan capabilities
-    
-
---->
-
 --------
 
-To learn R and RStudio we will be using Dr. Jenny Bryan's lectures from STAT545 at UBC. I have modifed them slightly here for our purposes; to see them in their full and awesome entirety, visit [stat545-ubc.github.io](https://stat545-ubc.github.io/). Specifically, we'll be using these lectures: 
+This lesson is a combination of excellent lessons by others (thank you Jenny Bryan and Data Carpentry!) that I have combined and modified for our workshop today. I definitely recommend reading through the original lessons and using them as reference:   
+
+[Dr. Jenny Bryan's lectures from STAT545 at UBC](https://stat545-ubc.github.io/)
 
 - [R basics, workspace and working directory, RStudio projects](http://stat545-ubc.github.io/block002_hello-r-workspace-wd-project.html)
 - [Basic care and feeding of data in R](http://stat545-ubc.github.io/block006_care-feeding-data.html)
 
-Something we won't cover today but that will be helpful to you in the future is:
 
-- [The many flavors of R objects](http://stat545-ubc.github.io/block004_basic-r-objects.html)
+[Data Carpentry R ecology lesson](http://www.datacarpentry.org/R-ecology-lesson)
 
-I've modified them in part with my own text and in part with text from Software Carpentry and Data Carpentry, specifically: 
-
-- [R for reproducible scientific analysis/Seeking help](http://swcarpentry.github.io/r-novice-gapminder/03-seeking-help.html)
 - [R for data analysis and visualization of Ecological Data/Intro to R](http://www.datacarpentry.org/R-ecology-lesson/01-intro-to-r.html)
 - [R for data analysis and visualization of Ecological Data/Starting with data](http://www.datacarpentry.org/R-ecology-lesson/02-starting-with-data.html)
 
-
-
-# R basics
-*(modified from Jenny Bryan's [STAT545](http://stat545-ubc.github.io/block002_hello-r-workspace-wd-project.html))*
 
 ```{r setup, include = FALSE, cache = FALSE}
 knitr::opts_chunk$set(error = TRUE)
 library(htmltools)
 ```
 
-# R at the command line, RStudio goodies
+# R at console, RStudio goodies
 
 Launch RStudio/R.
 
@@ -316,7 +290,7 @@ But there's a better way. A way that also puts you on the path to managing your 
 
 # Starting an analytical workflow
 
-We're going to do a few firsts here: we're going to 
+We're going to do a few firsts here. We're going to: 
 
 - create an RStudio project (.Rproj) 
 - create our first R script
@@ -374,7 +348,7 @@ A few things to note with the above: the function call is written across 2 lines
 
 ## Explore the data
 
-Let's read the data into R and save it to a variable called `surveys`. 
+Let's read the data into R and save it to a variable called `surveys`. Type this into your script. Unlike when we typed in the console, hitting 'enter'/'return' won't execute the command; we've essentially just written it in a text file. So to execute it, we'll have to press the 'Run' button in the top right of the editor pane, or a shortcut is command-enter.
 
 ```{r, eval=FALSE}
 ## read in the data
