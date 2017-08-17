@@ -364,7 +364,7 @@ seq(from = 1, to = 10) # same as seq(1, 10); R assumes by position</code></pre>
 <pre class="r"><code>??install </code></pre>
 <p>Not all functions have (or require) arguments:</p>
 <pre class="r"><code>date()</code></pre>
-<pre><code>## [1] &quot;Thu Aug 17 10:12:17 2017&quot;</code></pre>
+<pre><code>## [1] &quot;Thu Aug 17 12:14:33 2017&quot;</code></pre>
 <p>Now look at your workspace – in the upper right pane. The workspace is where user-defined objects accumulate. You can also get a listing of these objects with commands:</p>
 <pre class="r"><code>objects()</code></pre>
 <pre><code>## [1] &quot;science_rocks&quot;              &quot;this_is_a_really_long_name&quot;
@@ -416,9 +416,9 @@ seq(from = 1, to = 10) # same as seq(1, 10); R assumes by position</code></pre>
 <div id="create-an-r-script" class="section level2">
 <h2>Create an R script</h2>
 <p>It’s been great to play around in the console, but we are really here to focus on reproducible analyses, and that means saving our work in a script that can be rerun. Create a new R script by going to File &gt; New File &gt; R Script or going to the little plus at the top left of the RStudio console. Put a comment at the top of this script for now:</p>
-<pre class="r"><code>## my_script.R
+<pre class="r"><code>## 2017-08-17-my-script.r
 ## Julie Lowndes lowndes@nceas.ucsb.edu</code></pre>
-<p>Click on the floppy disk to save. Give it a name ending in <code>.R</code> or <code>.r</code>, and use no spaces in the name. I named mine <code>my-script.r</code> and note that, by default, it will go in the directory associated with your project. It is traditional to save R scripts with a <code>.R</code> or <code>.r</code> suffix.</p>
+<p>Click on the floppy disk to save. Give it a name ending in <code>.R</code> or <code>.r</code>, and use no spaces in the name. I named mine <code>2017-08-17-my-script.r</code> and note that, by default, it will go in the directory associated with your project. It is traditional to save R scripts with a <code>.R</code> or <code>.r</code> suffix. (check out Jenny Bryan’s rules for naming filesnames <a href="http://www2.stat.duke.edu/~rcs46/lectures_2015/01-markdown-git/slides/naming-slides/naming-slides.pdf">here</a>)</p>
 </div>
 <div id="create-a-data-folder" class="section level2">
 <h2>Create a data folder</h2>
@@ -614,7 +614,7 @@ surveys[c(2010,4933,6993,12710,12718,14015,14016), c(1, 4, 9, 12)] # Ditto. </co
 <div id="clean-up-our-r-script" class="section level2">
 <h2>Clean up our R script</h2>
 <p>Here is what mine looks like:</p>
-<pre class="r"><code>## my_script.R
+<pre class="r"><code>## 2017-08-17-my-script.r
 ## Julie Lowndes lowndes@nceas.ucsb.edu
 
 ## read in the data

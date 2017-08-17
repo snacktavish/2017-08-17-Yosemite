@@ -315,11 +315,11 @@ But with an RStudio project, your paths within this project can be relative, whi
 It's been great to play around in the console, but we are really here to focus on reproducible analyses, and that means saving our work in a script that can be rerun. Create a new R script by going to File > New File > R Script or going to the little plus at the top left of the RStudio console. Put a comment at the top of this script for now:  
 
 ```{r}
-## my_script.R
+## 2017-08-17-my-script.r
 ## Julie Lowndes lowndes@nceas.ucsb.edu
 ```
 
-Click on the floppy disk to save. Give it a name ending in `.R` or `.r`, and use no spaces in the name. I named mine `my-script.r` and note that, by default, it will go in the directory associated with your project. It is traditional to save R scripts with a `.R` or `.r` suffix. 
+Click on the floppy disk to save. Give it a name ending in `.R` or `.r`, and use no spaces in the name. I named mine `2017-08-17-my-script.r` and note that, by default, it will go in the directory associated with your project. It is traditional to save R scripts with a `.R` or `.r` suffix. (check out Jenny Bryan's rules for naming filesnames [here](http://www2.stat.duke.edu/~rcs46/lectures_2015/01-markdown-git/slides/naming-slides/naming-slides.pdf))
 
 ## Create a data folder
 
@@ -553,7 +553,7 @@ In contrast, the first command, is somewhat **self-documenting**; one does not n
 Here is what mine looks like: 
 
 ```{r, eval=FALSE}
-## my_script.R
+## 2017-08-17-my-script.r
 ## Julie Lowndes lowndes@nceas.ucsb.edu
 
 ## read in the data
