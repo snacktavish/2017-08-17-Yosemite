@@ -353,7 +353,7 @@ surveys <- read.csv("data/portal_data_joined.csv")
 
 Now, we are going to start exploring data. Click on 'surveys' in the environment pane. 
 
-Luckily, this data frame is **tidy**:
+Luckily, this data frame is **tidy**: (from the RStudio data wrangling [cheatsheet](http://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf)): 
 
 `r img(src='img/tidy_data.png', width=400)`
 
@@ -494,7 +494,7 @@ I don't want us to get too bogged down with what's going on with `table()` and p
 
 You will want to isolate bits of your data; maybe you want to just look at a single species or a few years. R calls this subsetting. There are several ways to do this. We'll go through a few options in base R so that you're familiar with them, and know how to read them. But then we'll move on to a new, better, intuitive, and game changing way with the `dplyr` package tomorrow.
 
-Here is a visual of how we're going to be subsetting. These images are from RStudio cheatsheets for dplyr and tidyr, which we will talk about all tomorrow.
+Visually, we are doing this (thanks RStudio for your [cheatsheet](http://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf)): (these images are from RStudio cheatsheets for dplyr and tidyr, which we will talk about all tomorrow).
 
 <br>
 
