@@ -364,7 +364,7 @@ seq(from = 1, to = 10) # same as seq(1, 10); R assumes by position</code></pre>
 <pre class="r"><code>??install </code></pre>
 <p>Not all functions have (or require) arguments:</p>
 <pre class="r"><code>date()</code></pre>
-<pre><code>## [1] &quot;Thu Aug 17 09:55:02 2017&quot;</code></pre>
+<pre><code>## [1] &quot;Thu Aug 17 10:03:34 2017&quot;</code></pre>
 <p>Now look at your workspace – in the upper right pane. The workspace is where user-defined objects accumulate. You can also get a listing of these objects with commands:</p>
 <pre class="r"><code>objects()</code></pre>
 <pre><code>## [1] &quot;science_rocks&quot;              &quot;this_is_a_really_long_name&quot;
@@ -439,6 +439,8 @@ seq(from = 1, to = 10) # same as seq(1, 10); R assumes by position</code></pre>
 <pre class="r"><code>## read in the data
 surveys &lt;- read.csv(&quot;data/portal_data_joined.csv&quot;)</code></pre>
 <p>Now, we are going to start exploring data. Click on ‘surveys’ in the environment pane.</p>
+<p>Luckily, this data frame is <strong>tidy</strong>:</p>
+<img src="img/tidy_data.png" width="400"/>
 <p>We are studying the species and weight of animals caught in plots in our study area. The dataset is stored as a comma separated value (CSV) file. Each row holds information for a single animal, and the columns represent:</p>
 <table>
 <thead>
@@ -576,9 +578,17 @@ barplot(table(surveys$taxa)) # so we can plot!</code></pre>
 <div id="subsetting-data" class="section level2">
 <h2>Subsetting data</h2>
 <p>You will want to isolate bits of your data; maybe you want to just look at a single species or a few years. R calls this subsetting. There are several ways to do this. We’ll go through a few options in base R so that you’re familiar with them, and know how to read them. But then we’ll move on to a new, better, intuitive, and game changing way with the <code>dplyr</code> package tomorrow.</p>
-<p>Remember your logical expressions from this morning? We’ll use <code>==</code> here.</p>
+<p>Here is a visual of how we’re going to be subsetting. These images are from RStudio cheatsheets for dplyr and tidyr, which we will talk about all tomorrow.</p>
+<p><br></p>
+<p>Selecting across rows is called <strong>filtering</strong>:</p>
+<img src="img/rstudio-cheatsheet-filter.png" width="400"/>
+<p><br></p>
+<p>Selecting across rows is called <strong>selecting</strong>:</p>
+<img src="img/rstudio-cheatsheet-select.png" width="400"/>
+<p><br></p>
 <div id="subsetting-with-base-rows-columns-notatation" class="section level3">
 <h3>subsetting with base <code>[rows, columns]</code> notatation</h3>
+<p>Remember your logical expressions from this morning? We’ll use <code>==</code> here.</p>
 <p>This notation is something you’ll see a lot in base R. the brackets <code>[ ]</code> allow you to extract parts of an object. Within the brackets, the comma separates rows from columns.</p>
 <pre class="r"><code>## subset numeric data
 surveys[surveys$month &gt;2, ] # don't forget this comma! 

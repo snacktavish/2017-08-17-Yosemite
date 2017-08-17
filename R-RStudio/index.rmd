@@ -353,6 +353,10 @@ surveys <- read.csv("data/portal_data_joined.csv")
 
 Now, we are going to start exploring data. Click on 'surveys' in the environment pane. 
 
+Luckily, this data frame is **tidy**:
+
+`r img(src='img/tidy_data.png', width=400)`
+
 We are studying the species and weight of animals caught in plots in our study
 area. The dataset is stored as a comma separated value (CSV) file.
 Each row holds information for a single animal, and the columns represent:
@@ -490,9 +494,28 @@ I don't want us to get too bogged down with what's going on with `table()` and p
 
 You will want to isolate bits of your data; maybe you want to just look at a single species or a few years. R calls this subsetting. There are several ways to do this. We'll go through a few options in base R so that you're familiar with them, and know how to read them. But then we'll move on to a new, better, intuitive, and game changing way with the `dplyr` package tomorrow.
 
-Remember your logical expressions from this morning? We'll use `==` here. 
+Here is a visual of how we're going to be subsetting. These images are from RStudio cheatsheets for dplyr and tidyr, which we will talk about all tomorrow.
+
+<br>
+
+Selecting across rows is called **filtering**:
+
+`r img(src='img/rstudio-cheatsheet-filter.png', width=400)` 
+
+<br>
+
+Selecting across rows is called **selecting**:
+
+`r img(src='img/rstudio-cheatsheet-select.png', width=400)`
+
+<br>
+
+
 
 ### subsetting with base `[rows, columns]` notatation 
+
+Remember your logical expressions from this morning? We'll use `==` here.  
+
 This notation is something you'll see a lot in base R. the brackets `[ ]` allow you to extract parts of an object. Within the brackets, the comma separates rows from columns. 
 ```{r, eval=FALSE}
 ## subset numeric data
