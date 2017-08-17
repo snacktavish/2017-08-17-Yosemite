@@ -451,7 +451,7 @@ summary(surveys$weight) # same information, just formatted slightly differently
 ```
 
 We'll spend tomorrow talking more about visualization, but it's so important for smell-testing dataset that we will make a few figures anyway. Here we use only base R graphics, which are very basic.
-```{r}
+```{r, eval=FALSE}
 ## plot surveys
 plot(surveys$year, surveys$weight) # ?plot
 plot(surveys$hindfoot_length, surveys$weight)

@@ -364,7 +364,7 @@ seq(from = 1, to = 10) # same as seq(1, 10); R assumes by position</code></pre>
 <pre class="r"><code>??install </code></pre>
 <p>Not all functions have (or require) arguments:</p>
 <pre class="r"><code>date()</code></pre>
-<pre><code>## [1] &quot;Wed Aug 16 23:16:02 2017&quot;</code></pre>
+<pre><code>## [1] &quot;Wed Aug 16 23:19:32 2017&quot;</code></pre>
 <p>Now look at your workspace – in the upper right pane. The workspace is where user-defined objects accumulate. You can also get a listing of these objects with commands:</p>
 <pre class="r"><code>objects()</code></pre>
 <pre><code>## [1] &quot;science_rocks&quot;              &quot;this_is_a_really_long_name&quot;
@@ -551,10 +551,8 @@ str(surveys$weight) # it is a single numeric vector
 summary(surveys$weight) # same information, just formatted slightly differently</code></pre>
 <p>We’ll spend tomorrow talking more about visualization, but it’s so important for smell-testing dataset that we will make a few figures anyway. Here we use only base R graphics, which are very basic.</p>
 <pre class="r"><code>## plot surveys
-plot(surveys$year, surveys$weight) # ?plot</code></pre>
-<pre><code>## Error in plot(surveys$year, surveys$weight): object 'surveys' not found</code></pre>
-<pre class="r"><code>plot(surveys$hindfoot_length, surveys$weight)</code></pre>
-<pre><code>## Error in plot(surveys$hindfoot_length, surveys$weight): object 'surveys' not found</code></pre>
+plot(surveys$year, surveys$weight) # ?plot
+plot(surveys$hindfoot_length, surveys$weight)</code></pre>
 <p>There is a lot of data here, but these plots can help us think about the data and what we may want to explore further. For example, could those differences hindfoot_length vs weight be explained by sex?</p>
 <p>Let’s explore another numeric variable: life expectancy.</p>
 <pre class="r"><code>## explore numeric variable
