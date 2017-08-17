@@ -1,5 +1,5 @@
 ---
-title: "Data Carpentry Workshop at Yosemite Field Station (UC Merced)"
+title: "Data Carpentry Workshop at UC Merced (previously Yosemite Field Station)"
 subtitle: "Workshop Overview: Open and Reproducible Ecology" 
 date: "August 17, 2017"
 output: 
@@ -11,7 +11,7 @@ output:
 **Instructors and helpers**
 
 - Karen Cranston (twitter: @kcranstn | github: @kcranston)
-- Julie Lowndes (twitter: @juliesquid | github: @jules32)
+- Julie Stewart Lowndes (twitter: @juliesquid | github: @jules32)
 - Jamie Afflerbach (twitter | github: @jafflerbach)
 - Noelle Anderson 
 - Emily Jane McTavish (twitter | github: @snacktavish)
@@ -25,19 +25,19 @@ output:
 
 This is going to be a fun workshop.  
 
-The plan is to expose you to a lot of great tools that you can gain confidence using for your research. You'll be working hands-on and doing the same things on your own computer as we do live on up on the screen. We're going to go through a lot in these two days and it is hard to remember it all at once, but you'll have confidence that you can do it and know where to look for help as you go forward with your analyses. Googling is a big part of coding. 
+The plan is to expose you to a lot of great tools that you can have confidence using in your research. You'll be working hands-on and doing the same things on your own computer as we do live on up on the screen. We're going to go through a lot in these two days and it is hard to remember it all at once, but you'll know you can do it and know where to look for help as you go forward with your analyses. Googling is a big part of coding!  
 
-We'll be talking about : 
+In this workshop we'll be talking about: 
 
 - how to THINK deliberately about data and data analysis. And not just any data; tidy data.
 - how to increase reproducibility in your science
-- how to more easily collaborate with others — most importantly with your future self!
+- how to collaborate more easily with others — most importantly with your future self!
 - how the #rstats community is fantastic. The tools we're using are developed by real people. They are building great stuff and helping people of all skill-levels learn how to use it. 
 
 # Workshop materials 
 
 - [Course Website](https://snacktavish.github.io/2017-08-17-Yosemite/)
-- [Workshop Overview](https://snacktavish.github.io/2017-08-17-Yosemite/overview/) (Karen (?))
+- [Workshop Overview](https://snacktavish.github.io/2017-08-17-Yosemite/overview/)
 - [Data organization in spreadsheets and OpenRefine for data cleaning](http://www.datacarpentry.org/OpenRefine-ecology-lesson/) (Karen)
 - [Intro to R and RStudio](https://snacktavish.github.io/2017-08-17-Yosemite/R-RStudio/) (Julie)
 - [Data analysis with dplyr and tidyr](http://www.datacarpentry.org/R-ecology-lesson/03-dplyr.html) (Jamie) 
@@ -56,7 +56,7 @@ This graphic is from Wickham & Grolemund's [**R for Data Science**](http://r4ds.
 
 # By the end of the course
 
-You'll have hands-on experience with importing and wrangling data in OpenRefine and R. In R, you'll have created scripts with analysis and visualizations, and saved them locally and online on your GitHub account. It's going to be great.  
+You'll have hands-on experience with importing and wrangling data in OpenRefine and R. In R, you'll have created scripts with analysis and visualizations. You'll have seen how git does version control on these scripts for you (no more 'my_script_v2_Aug_17.R') and can interact with them online on your GitHub account. It's going to be great!  
 
 
     
