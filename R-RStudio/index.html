@@ -364,7 +364,7 @@ seq(from = 1, to = 10) # same as seq(1, 10); R assumes by position</code></pre>
 <pre class="r"><code>??install </code></pre>
 <p>Not all functions have (or require) arguments:</p>
 <pre class="r"><code>date()</code></pre>
-<pre><code>## [1] &quot;Wed Aug 16 22:33:44 2017&quot;</code></pre>
+<pre><code>## [1] &quot;Wed Aug 16 23:16:02 2017&quot;</code></pre>
 <p>Now look at your workspace – in the upper right pane. The workspace is where user-defined objects accumulate. You can also get a listing of these objects with commands:</p>
 <pre class="r"><code>objects()</code></pre>
 <pre><code>## [1] &quot;science_rocks&quot;              &quot;this_is_a_really_long_name&quot;
@@ -503,15 +503,23 @@ surveys &lt;- read.csv(&quot;data/portal_data_joined.csv&quot;)</code></pre>
 </tbody>
 </table>
 <p>Let’s try this without using the mouse, we can type commands in our script too. Type <code>surveys</code> and execute this line by pressing ‘Run’ or command-return.</p>
-<p>Wow… that was a lot of output. At least it means the data loaded properly. Let’s check the top (the first 6 lines) of this data frame using the function <code>head()</code>:</p>
-<pre class="r"><code>head(surveys)</code></pre>
-<div id="what-are-data-frames" class="section level3">
-<h3>What are data frames?</h3>
-<p>Data frames are the <em>de facto</em> data structure for most tabular data, and what we use for statistics and plotting. Ours is actually a tibble, which is robust type of dataframe.</p>
-<p>A data frame is the representation of data in the format of a table where the columns are vectors that all have the same length. Because the column are vectors, they all contain the same type of data (e.g., characters, integers, factors). For example, here is a figure depicting a data frame comprising of a numeric, a character and a logical vector.</p>
-<p>We can see this when inspecting the <b>str</b>ucture of a data frame with the function <code>str()</code>:</p>
-<pre class="r"><code>str(surveys)</code></pre>
-</div>
+<pre class="r"><code>surveys # this is super long! Let's inspect in different ways</code></pre>
+<p>Let’s use <code>head</code> and <code>tail</code>:</p>
+<pre class="r"><code>head(surveys) # shows first 6
+tail(surveys, 10) # guess what this does!</code></pre>
+<p><code>str()</code> will provide a sensible description of almost anything: when in doubt, just <code>str()</code> some of the recently created objects to get some ideas about what to do next.</p>
+<pre class="r"><code>str(surveys) # ?str - displays the structure of an object</code></pre>
+<p><code>surveys</code> is a <code>data.frame</code>. We aren’t going to get into the other types of data receptacles today (‘arrays’, ‘matrices’), because working with data.frames is what you should primarily use. Why?</p>
+<ul>
+<li>data.frames package related variables neatly together, great for analysis</li>
+<li>most functions, including the latest and greatest packages actually <strong>require</strong> that your data be in a data.frame</li>
+<li>data.frames can hold variables of different flavors such as
+<ul>
+<li>character data (genus or sex; “Factors”)</li>
+<li>quantitative data (record_id, year; “Integers (int)” or “Numeric (num)”)</li>
+<li>categorical information (male vs. female)</li>
+</ul></li>
+</ul>
 <div id="inspecting-data.frame-objects" class="section level3">
 <h3>Inspecting <code>data.frame</code> Objects</h3>
 <p>We already saw how the functions <code>head()</code> and <code>str()</code> can be useful to check the content and the structure of a data frame. Here is a non-exhaustive list of functions to get a sense of the content/structure of the data. Let’s try them out!</p>
@@ -533,31 +541,77 @@ ncol(surveys) # number of columns</code></pre>
 <pre class="r"><code>## names
 names(surveys) # column names </code></pre>
 <p>Note: most of these functions are “generic”, they can be used on other types of objects besides <code>data.frame</code>.</p>
-<blockquote>
-<h3 id="challenge">Challenge</h3>
-<p>Based on the output of <code>str(surveys)</code>, can you answer the following questions?</p>
-<ul>
-<li>What is the class of the object <code>surveys</code>?</li>
-<li>How many rows and how many columns are in this object?</li>
-<li>How many species have been recorded during these surveys?</li>
-</ul>
-</blockquote>
-<!---
-
---->
 </div>
-<div id="clean-up-our-r-script." class="section level3">
-<h3>Clean up our R script.</h3>
+<div id="look-at-the-variables-inside-a-data.frame" class="section level3">
+<h3>Look at the variables inside a data.frame</h3>
+<p>To specify a single variable from a data.frame, use the dollar sign <code>$</code>. The <code>$</code> operator is a way to extract of replace parts of an object–check out the help menu for <code>$</code>. It’s a common operator you’ll see in R.</p>
+<pre class="r"><code>surveys$weight # very long! hard to make sense of...
+head(surveys$weight) # can do the same tests we tried before
+str(surveys$weight) # it is a single numeric vector
+summary(surveys$weight) # same information, just formatted slightly differently</code></pre>
+<p>We’ll spend tomorrow talking more about visualization, but it’s so important for smell-testing dataset that we will make a few figures anyway. Here we use only base R graphics, which are very basic.</p>
+<pre class="r"><code>## plot surveys
+plot(surveys$year, surveys$weight) # ?plot</code></pre>
+<pre><code>## Error in plot(surveys$year, surveys$weight): object 'surveys' not found</code></pre>
+<pre class="r"><code>plot(surveys$hindfoot_length, surveys$weight)</code></pre>
+<pre><code>## Error in plot(surveys$hindfoot_length, surveys$weight): object 'surveys' not found</code></pre>
+<p>There is a lot of data here, but these plots can help us think about the data and what we may want to explore further. For example, could those differences hindfoot_length vs weight be explained by sex?</p>
+<p>Let’s explore another numeric variable: life expectancy.</p>
+<pre class="r"><code>## explore numeric variable
+summary(surveys$month)
+hist(surveys$month)</code></pre>
+<p>Let’s explore a categorical variable (stored as a <em>factor</em> in R): continent.</p>
+<pre class="r"><code>## explore factor variable
+summary(surveys$taxa)
+levels(surveys$taxa)
+nlevels(surveys$taxa)
+hist(surveys$taxa) # whaaaa!?</code></pre>
+<p>This error is because of what factors are ‘under the hood’: R is really storing integer codes 1, 2, 3 here, but represent them as text to us. Factors can be problematic to us because of this, but you can learn to navigate with them. There are resources to learn how to <a href="http://stat545.com/block014_factors.html">properly care and feed for factors</a>.</p>
+<p>One thing you’ll learn is how to visualize factors with which functions/packages.</p>
+<pre class="r"><code>class(surveys$taxa) # ?class returns the class type of the object
+table(surveys$taxa) # ?table builds a table based on factor levels 
+class(table(surveys$taxa)) # this has morphed the factor...
+barplot(table(surveys$taxa)) # so we can plot!</code></pre>
+<p>I don’t want us to get too bogged down with what’s going on with <code>table()</code> and plotting factors, but I want to expose you to these situations because you will encounter them. Googling the error messages you get, and knowing how to look for good responses is a critical skill. (I tend to look for responses from stackoverflow.com that are recent and have green checks, and ignore snarky comments).</p>
+</div>
+</div>
+<div id="subsetting-data" class="section level2">
+<h2>Subsetting data</h2>
+<p>You will want to isolate bits of your data; maybe you want to just look at a single species or a few years. R calls this subsetting. There are several ways to do this. We’ll go through a few options in base R so that you’re familiar with them, and know how to read them. But then we’ll move on to a new, better, intuitive, and game changing way with the <code>dplyr</code> package tomorrow.</p>
+<p>Remember your logical expressions from this morning? We’ll use <code>==</code> here.</p>
+<div id="subsetting-with-base-rows-columns-notatation" class="section level3">
+<h3>subsetting with base <code>[rows, columns]</code> notatation</h3>
+<p>This notation is something you’ll see a lot in base R. the brackets <code>[ ]</code> allow you to extract parts of an object. Within the brackets, the comma separates rows from columns.</p>
+<pre class="r"><code>## subset numeric data
+surveys[surveys$month &gt;2, ] # don't forget this comma! 
+
+## subset factors
+surveys[surveys$taxa == &quot;Reptile&quot;, ] # don't forget this comma! </code></pre>
+<p>So our notation is saying ‘select these rows, and all columns’.</p>
+<p>We could also select which columns to keep using the <code>c()</code> function:</p>
+<pre class="r"><code>surveys[surveys$taxa == &quot;Reptile&quot;, c(&quot;record_id&quot;, &quot;year&quot;, &quot;weight&quot;, &quot;taxa&quot;)] # ?c: combines values into a vector or list</code></pre>
+<p>Contrast the above command with this one accomplishing the same thing:</p>
+<pre class="r"><code>surveys[c(2010,4933,6933,12710,12718,14015,14016), ] # No idea what we are inspecting. Don't do this. And, I introduced a typo!
+
+surveys[c(2010,4933,6993,12710,12718,14015,14016), c(1, 4, 9, 12)] # Ditto. </code></pre>
+<p>Yes, these both return the same result. But the second command is horrible for these reasons:</p>
+<ul>
+<li>It contains <a href="http://en.wikipedia.org/wiki/Magic_number_(programming)">Magic Numbers</a>. The reason for keeping rows 1621 to 1632 will be non-obvious to someone else and that includes <strong>you</strong> in a couple of weeks.</li>
+<li>It is fragile. If the rows of <code>surveys</code> are reordered or if some observations are eliminated, these rows may no longer correspond to the Reptile data.</li>
+</ul>
+<p>In contrast, the first command, is somewhat <strong>self-documenting</strong>; one does not need to be an R expert to take a pretty good guess at what’s happening. It’s also more robust. It will still produce the correct result even if <code>surveys</code> has undergone some reasonable set of transformations (what if it were in in reverse alphabetical order?)</p>
+</div>
+</div>
+<div id="clean-up-our-r-script" class="section level2">
+<h2>Clean up our R script</h2>
 <p>Here is what mine looks like:</p>
 <pre class="r"><code>## my_script.R
 ## Julie Lowndes lowndes@nceas.ucsb.edu
 
-## load readr library
-library(readr) # install.packages('readr')
-
 ## read in the data
-surveys &lt;- readr::read_csv(&quot;https://ndownloader.figshare.com/files/2292169&quot;)
-
+download.file(&quot;https://ndownloader.figshare.com/files/2292169&quot;,
+              &quot;data/portal_data_joined.csv&quot;)
+surveys &lt;- read.csv(&quot;data/portal_data_joined.csv&quot;)
 
 ## explore content
 head(surveys) # first 6 rows
@@ -574,8 +628,36 @@ nrow(surveys) # number of rows
 ncol(surveys) # number of columns
 
 ## names
-names(surveys) # column names </code></pre>
-</div>
+names(surveys) # column names 
+
+## explore numeric variables
+surveys$weight # very long! hard to make sense of...
+head(surveys$weight) # can do the same tests we tried before
+str(surveys$weight) # it is a single numeric vector
+summary(surveys$weight) # same information, just formatted slightly differently
+
+## quick plots of numeric variables
+plot(surveys$year, surveys$weight) # ?plot
+plot(surveys$hindfoot_length, surveys$weight)
+
+## explore factor variable
+class(surveys$taxa)
+summary(surveys$taxa)
+levels(surveys$taxa)
+nlevels(surveys$taxa)
+barplot(table(surveys$taxa))
+
+## subset numeric variables
+surveys[surveys$month &gt;2, ] # don't forget this comma! 
+
+## subset factors
+surveys[surveys$taxa == &quot;Reptile&quot;, ] # don't forget this comma! 
+
+## subset variables and only retain certain columns
+surveys[surveys$taxa == &quot;Reptile&quot;, c(&quot;record_id&quot;, &quot;year&quot;, &quot;weight&quot;, &quot;taxa&quot;)] # ?c: combines values into a vector or list
+
+## never subset this way! Magic numbers are bad!
+surveys[c(2010,4933,6993,12710,12718,14015,14016), c(1, 4, 9, 12)] # What does this even mean?</code></pre>
 <div id="remember" class="section level3">
 <h3>Remember…</h3>
 <p>This workflow will serve you well in the future:</p>
@@ -583,9 +665,8 @@ names(surveys) # column names </code></pre>
 <li>Create an RStudio project for an analytical project</li>
 <li>Keep inputs there (although we didn’t save data locally, we put it directly into the R workspace for now)</li>
 <li>Keep scripts there; edit them, run them in bits or as a whole from there</li>
-<li>Keep outputs there (we’ll do that tomorrow)</li>
+<li>Keep outputs there (we’ll do that tomorrow) <strong>Avoid using the mouse for pieces of your analytical workflow</strong>, such as loading a dataset or saving a figure. This is terribly important for reproducility and for making it possible to retrospectively determine how a numerical table or PDF was actually produced (searching on local disk on filename, among <code>.R</code> files, will lead to the relevant script).</li>
 </ul>
-<p><strong>Avoid using the mouse for pieces of your analytical workflow</strong>, such as loading a dataset or saving a figure. This is terribly important for reproducility and for making it possible to retrospectively determine how a numerical table or PDF was actually produced (searching on local disk on filename, among <code>.R</code> files, will lead to the relevant script).</p>
 </div>
 </div>
 </div>
