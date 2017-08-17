@@ -364,7 +364,7 @@ seq(from = 1, to = 10) # same as seq(1, 10); R assumes by position</code></pre>
 <pre class="r"><code>??install </code></pre>
 <p>Not all functions have (or require) arguments:</p>
 <pre class="r"><code>date()</code></pre>
-<pre><code>## [1] &quot;Thu Aug 17 10:11:10 2017&quot;</code></pre>
+<pre><code>## [1] &quot;Thu Aug 17 10:12:17 2017&quot;</code></pre>
 <p>Now look at your workspace – in the upper right pane. The workspace is where user-defined objects accumulate. You can also get a listing of these objects with commands:</p>
 <pre class="r"><code>objects()</code></pre>
 <pre><code>## [1] &quot;science_rocks&quot;              &quot;this_is_a_really_long_name&quot;
@@ -441,6 +441,7 @@ surveys &lt;- read.csv(&quot;data/portal_data_joined.csv&quot;)</code></pre>
 <p>Now, we are going to start exploring data. Click on ‘surveys’ in the environment pane.</p>
 <p>Luckily, this data frame is <strong>tidy</strong>: (from the RStudio data wrangling <a href="http://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf">cheatsheet</a>):</p>
 <img src="img/tidy_data.png" width="400"/>
+<p><br></p>
 <p>We are studying the species and weight of animals caught in plots in our study area. The dataset is stored as a comma separated value (CSV) file. Each row holds information for a single animal, and the columns represent:</p>
 <table>
 <thead>
