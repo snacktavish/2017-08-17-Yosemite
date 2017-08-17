@@ -102,7 +102,6 @@ Another way to inspect this variable is to begin typing `this_`...and RStudio wi
 
 And another way to inspect this is by looking at the Environment pane in RStudio. 
 
-Another was is to try out RStudio's completion facility: type the first few characters, press TAB, add characters until you disambiguate, then press return.
 ```{r}
 this_is_a_really_long_name
 ```
@@ -117,7 +116,7 @@ Let's try to inspect:
 sciencerocks
 ```
 
-Implicit contract with the computer / scripting language: Computer will do tedious computation for you. In return, you will be completely precise in your instructions. Typos matter. Case matters. Get better at typing.
+Implicit contract with the computer / scripting language: Computer will do tedious computation for you. In return, you will be completely precise in your instructions. Typos matter. Case matters. You'll need to pay attention to how you type.
 
 Remember that this is a language, not unsimilar to English! There are times you aren't understood -- it's going to happen. There are different ways this can happen. Sometimes you'll get an error. This is like someone saying 'What?' or 'Pardon'? Error messages can also be more useful, like when they say 'I didn't understand this specific part of what you said, I was expecting something else'. That is a great type of error message. Error messages are your friend. Google them (copy-and-paste!) to figure out what they mean. 
 
@@ -188,7 +187,7 @@ What do you think is the current content of the object `weight_lb`? 126.5 or 220
 
 R has a mind-blowing collection of built-in functions that are accessed like so
 ```{r eval = FALSE, tidy = FALSE}
-# functionName(argument1 = my_first_argument, argument2 = my_second_argument...)
+# function_name(argument1 = my_first_argument, argument2 = my_second_argument...)
 ```
 
 Let's try using `seq()` which makes regular sequences of numbers and, while we're at it, demo more helpful features of RStudio.
@@ -261,7 +260,7 @@ or click the broom in RStudio's Environment pane.
 
 > Exercise: Clear your workspace, then create a few new variables. Create a variable that is the mean of a sequence of 1-20. What's a good name for your variable? Does it matter what your 'by' argument is? Why?
 
-# Working directories, RStudio projects
+# Working directories, RStudio projects, scripts
 
 So we will talk about scripts in a moment, but first let's talk about where they should live. 
 
@@ -287,14 +286,6 @@ setwd("~/myCoolProject")
 ```
 
 But there's a better way. A way that also puts you on the path to managing your R work like an expert.
-
-# Starting an analytical workflow
-
-We're going to do a few firsts here. We're going to: 
-
-- create an RStudio project (.Rproj) 
-- create our first R script
-- explore our first dataframe
 
 ## RStudio projects
 
@@ -337,18 +328,22 @@ Let's also create a folder in our Project called 'data' (all lowercase). You can
 
 ## Download and save our data
 
-We will use the `download.file()` function to download data from figshare online. Once you run this, you should see the file appear in the data folder.
+We will use the `download.file()` function to download data from figshare online. Let's look up `?download.file()` in the help first.   
+
+Let's run this. Unlike when we typed in the console, hitting 'enter'/'return' won't execute the command; we've essentially just written it in a text file. So to execute it, we'll have to press the 'Run' button in the top right of the editor pane, or a shortcut is command-enter.
 
 ```{r, eval=FALSE}
-download.file(url      = "https://ndownloader.figshare.com/files/2292169",
-              destfile = "data/portal_data_joined.csv")
+download.file("https://ndownloader.figshare.com/files/2292169",
+              "data/portal_data_joined.csv")
 ```
 
-A few things to note with the above: the function call is written across 2 lines, and I've even added spaces so that the `=` line up and it's a bit easier to read. R is OK with extra white space, so we can use some whitespace to make it easier to read.
+A few things to note with the above: the function call is written across 2 lines: R is OK with extra white space, and will even indent so it's easier to read.
+
+Once you run this, you should see the file appear in the data folder.
 
 ## Explore the data
 
-Let's read the data into R and save it to a variable called `surveys`. Type this into your script. Unlike when we typed in the console, hitting 'enter'/'return' won't execute the command; we've essentially just written it in a text file. So to execute it, we'll have to press the 'Run' button in the top right of the editor pane, or a shortcut is command-enter.
+Let's read the data into R and save it to a variable called `surveys`. Type this into your script. 
 
 ```{r, eval=FALSE}
 ## read in the data

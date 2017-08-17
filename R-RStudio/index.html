@@ -279,7 +279,6 @@ x</code></pre>
 <pre><code>## [1] 2.5</code></pre>
 <p>Another way to inspect this variable is to begin typing <code>this_</code>…and RStudio will automagically have suggested completions for you that you can select by hitting the tab key, then press return.</p>
 <p>And another way to inspect this is by looking at the Environment pane in RStudio.</p>
-<p>Another was is to try out RStudio’s completion facility: type the first few characters, press TAB, add characters until you disambiguate, then press return.</p>
 <pre class="r"><code>this_is_a_really_long_name</code></pre>
 <pre><code>## [1] 2.5</code></pre>
 <p>One more:</p>
@@ -287,7 +286,7 @@ x</code></pre>
 <p>Let’s try to inspect:</p>
 <pre class="r"><code>sciencerocks</code></pre>
 <pre><code>## Error in eval(expr, envir, enclos): object 'sciencerocks' not found</code></pre>
-<p>Implicit contract with the computer / scripting language: Computer will do tedious computation for you. In return, you will be completely precise in your instructions. Typos matter. Case matters. Get better at typing.</p>
+<p>Implicit contract with the computer / scripting language: Computer will do tedious computation for you. In return, you will be completely precise in your instructions. Typos matter. Case matters. You’ll need to pay attention to how you type.</p>
 <p>Remember that this is a language, not unsimilar to English! There are times you aren’t understood – it’s going to happen. There are different ways this can happen. Sometimes you’ll get an error. This is like someone saying ‘What?’ or ‘Pardon’? Error messages can also be more useful, like when they say ‘I didn’t understand this specific part of what you said, I was expecting something else’. That is a great type of error message. Error messages are your friend. Google them (copy-and-paste!) to figure out what they mean.</p>
 <img src="img/practicalDev_googleErrorMessage.jpg" width="400"/>
 <p>And also know that there are errors that can creep in more subtly, when you are giving information that is understood, but not in the way you meant. Like if I’m telling a story about tables and you’re picturing where you eat breakfast and I’m talking about data. This can leave me thinking I’ve gotten something across that the listener (or R) interpreted very differently. And as I continue telling my story you get more and more confused… So write clean code and check your work as you go to minimize these circumstances!</p>
@@ -333,7 +332,7 @@ x</code></pre>
 <div id="r-functions-help-pages" class="section level2">
 <h2>R functions, help pages</h2>
 <p>R has a mind-blowing collection of built-in functions that are accessed like so</p>
-<pre class="r"><code># functionName(argument1 = my_first_argument, argument2 = my_second_argument...)</code></pre>
+<pre class="r"><code># function_name(argument1 = my_first_argument, argument2 = my_second_argument...)</code></pre>
 <p>Let’s try using <code>seq()</code> which makes regular sequences of numbers and, while we’re at it, demo more helpful features of RStudio.</p>
 <p>Type <code>se</code> and hit TAB. A pop up shows you possible completions. Specify <code>seq()</code> by typing more to disambiguate or using the up/down arrows to select. Notice the floating tool-tip-type help that pops up, reminding you of a function’s arguments. If you want even more help, press F1 as directed to get the full documentation in the help tab of the lower right pane.</p>
 <p>Type the arguments <code>1, 10</code> and hit return.</p>
@@ -365,7 +364,7 @@ seq(from = 1, to = 10) # same as seq(1, 10); R assumes by position</code></pre>
 <pre class="r"><code>??install </code></pre>
 <p>Not all functions have (or require) arguments:</p>
 <pre class="r"><code>date()</code></pre>
-<pre><code>## [1] &quot;Tue Aug 15 18:13:48 2017&quot;</code></pre>
+<pre><code>## [1] &quot;Wed Aug 16 22:33:44 2017&quot;</code></pre>
 <p>Now look at your workspace – in the upper right pane. The workspace is where user-defined objects accumulate. You can also get a listing of these objects with commands:</p>
 <pre class="r"><code>objects()</code></pre>
 <pre><code>## [1] &quot;science_rocks&quot;              &quot;this_is_a_really_long_name&quot;
@@ -385,8 +384,8 @@ seq(from = 1, to = 10) # same as seq(1, 10); R assumes by position</code></pre>
 </blockquote>
 </div>
 </div>
-<div id="working-directories-rstudio-projects" class="section level1">
-<h1>Working directories, RStudio projects</h1>
+<div id="working-directories-rstudio-projects-scripts" class="section level1">
+<h1>Working directories, RStudio projects, scripts</h1>
 <p>So we will talk about scripts in a moment, but first let’s talk about where they should live.</p>
 <p><em>We’re not going to cover workspaces today, but this is another alternative to scripts. You can learn about it in this RStudio article: <a href="https://support.rstudio.com/hc/en-us/articles/200711843-Working-Directories-and-Workspaces">Working Directories and Workspaces</a>.</em></p>
 <div id="working-directory" class="section level3">
@@ -400,15 +399,6 @@ seq(from = 1, to = 10) # same as seq(1, 10); R assumes by position</code></pre>
 <pre class="r"><code>setwd(&quot;~/myCoolProject&quot;)</code></pre>
 <p>But there’s a better way. A way that also puts you on the path to managing your R work like an expert.</p>
 </div>
-</div>
-<div id="starting-an-analytical-workflow" class="section level1">
-<h1>Starting an analytical workflow</h1>
-<p>We’re going to do a few firsts here. We’re going to:</p>
-<ul>
-<li>create an RStudio project (.Rproj)</li>
-<li>create our first R script</li>
-<li>explore our first dataframe</li>
-</ul>
 <div id="rstudio-projects" class="section level2">
 <h2>RStudio projects</h2>
 <p>Keeping all the files associated with a project organized together – input data, R scripts, analytical results, figures – is such a wise and common practice that RStudio has built-in support for this via its <em>projects</em>. More here: <a href="https://support.rstudio.com/hc/en-us/articles/200526207-Using-Projects">Using Projects</a>.</p>
@@ -436,14 +426,16 @@ seq(from = 1, to = 10) # same as seq(1, 10); R assumes by position</code></pre>
 </div>
 <div id="download-and-save-our-data" class="section level2">
 <h2>Download and save our data</h2>
-<p>We will use the <code>download.file()</code> function to download data from figshare online. Once you run this, you should see the file appear in the data folder.</p>
-<pre class="r"><code>download.file(url      = &quot;https://ndownloader.figshare.com/files/2292169&quot;,
-              destfile = &quot;data/portal_data_joined.csv&quot;)</code></pre>
-<p>A few things to note with the above: the function call is written across 2 lines, and I’ve even added spaces so that the <code>=</code> line up and it’s a bit easier to read. R is OK with extra white space, so we can use some whitespace to make it easier to read.</p>
+<p>We will use the <code>download.file()</code> function to download data from figshare online. Let’s look up <code>?download.file()</code> in the help first.</p>
+<p>Let’s run this. Unlike when we typed in the console, hitting ‘enter’/‘return’ won’t execute the command; we’ve essentially just written it in a text file. So to execute it, we’ll have to press the ‘Run’ button in the top right of the editor pane, or a shortcut is command-enter.</p>
+<pre class="r"><code>download.file(&quot;https://ndownloader.figshare.com/files/2292169&quot;,
+              &quot;data/portal_data_joined.csv&quot;)</code></pre>
+<p>A few things to note with the above: the function call is written across 2 lines: R is OK with extra white space, and will even indent so it’s easier to read.</p>
+<p>Once you run this, you should see the file appear in the data folder.</p>
 </div>
 <div id="explore-the-data" class="section level2">
 <h2>Explore the data</h2>
-<p>Let’s read the data into R and save it to a variable called <code>surveys</code>. Type this into your script. Unlike when we typed in the console, hitting ‘enter’/‘return’ won’t execute the command; we’ve essentially just written it in a text file. So to execute it, we’ll have to press the ‘Run’ button in the top right of the editor pane, or a shortcut is command-enter.</p>
+<p>Let’s read the data into R and save it to a variable called <code>surveys</code>. Type this into your script.</p>
 <pre class="r"><code>## read in the data
 surveys &lt;- read.csv(&quot;data/portal_data_joined.csv&quot;)</code></pre>
 <p>Now, we are going to start exploring data. Click on ‘surveys’ in the environment pane.</p>
