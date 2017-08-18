@@ -23,9 +23,8 @@ library(htmltools)
 1. add their neighbor as a collaborator to their repo
 1. practice more; make changes to their repo, and to their neighbor's. 
 
-*Note:* Today's materials were developed for and borrowing from: 
 
-- Ben Best's Software Carpentry at UCSB [git lesson](http://remi-daigle.github.io/2016-04-15-UCSB/git/) and [Visualization in R lesson](http://remi-daigle.github.io/2016-04-15-UCSB/viz/).
+![](img/practicalDev_changingstuff.jpg)
 
 
 # Intro to Markdown
