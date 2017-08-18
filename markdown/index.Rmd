@@ -1,0 +1,126 @@
+---
+title: "(R)Markdown and Github"
+author: "Julie Lowndes"
+date: "August 18, 2016"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+    number_sections: true
+    #code_folding: hide
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(htmltools)
+```
+
+# Objectives
+
+
+1. learn markdown, practice
+1. if time: learn Rmarkdown, create a document based on survey analysis 
+1. add their neighbor as a collaborator to their repo
+1. practice more; make changes to their repo, and to their neighbor's. 
+
+*Note:* Today's materials were developed for and borrowing from: 
+
+- Ben Best's Software Carpentry at UCSB [git lesson](http://remi-daigle.github.io/2016-04-15-UCSB/git/) and [Visualization in R lesson](http://remi-daigle.github.io/2016-04-15-UCSB/viz/).
+
+
+# Intro to Markdown
+
+Let's learn markdown by editing the `README.md` on github.com for convenience. A README.md file can be added to every folder in a repository, and they are automatically displayed when the repository is opened on github.com  
+
+The `README.md` is in **markdown**, simple syntax for conversion to HTML. `.md` is a kind of text file, so you only need a text editor to read it. If you were editing this on your computer, you could do this right in RStudio, which has a built-in text editor. (You could also do it in another text editor program, but RStudio is convenient). Copy-paste the following into your `README.md`: 
+  
+```
+# my-project
+
+Playing with [Data Carpentry at UC Merced -  Yosemite](https://snacktavish.github.io/2017-08-17-Yosemite/).
+
+## Introduction
+
+This repository demonstrates **software** and _formats_:
+
+1. **Git**
+1. **Github**
+1. _Markdown_
+1. _Rmarkdown_
+
+## Conclusion
+
+![](https://octodex.github.com/images/labtocat.png)
+```
+    
+Now click on the Preview button to see the markdown rendered as HTML.
+    
+Notice the syntax for:
+
+- **numbered list** gets automatically sequenced: `1.`, `1.`
+- **headers** get rendered at multiple levels: `#`, `##`
+- **link**: `[](http://...)`
+- **image**: `![](http://...)`
+- _italics_: `_word_` 
+- **bold**: `**word**`
+
+There are some good [cheatsheets](https://github.com/adam-p/markdown-here/wiki/Markdown-Here-Cheatsheet) to get you started, and here is one built into RStudio:
+<br />
+<br />
+
+![](img/md_cheatsheet.png)
+<br />
+<br />
+
+See [Mastering Markdown · GitHub Guides](https://guides.github.com/features/mastering-markdown/) and add some more personalized content to the README of your own, like a bulleted list or blockquote.
+For on the fly rendering, the [atom](https://atom.io/) text editor is good.
+
+# Commit this README.md 
+
+Have a look through the repo on github.com to see the updates you've made, and notice that it renders below the files in the repo. This is a unique trait of README.md
+
+# Rmarkdown from RStudio
+
+Back in RStudio, let's create a new Rmarkdown file, which allows us to weave markdown text with chunks of R code to be evaluated and output content like tables and plots.
+
+File -> New File -> Rmarkdown... -> Document of output format HTML, OK.
+
+`r img(src='img/rstudio_new-rmd-doc-html.png', width=300)`
+
+You can give it a Title of "My Project". After you click OK, most importantly File -> Save as `index` (which will get named with the filename extension `index.Rmd`).
+
+Some initial text is already provided for you. Let's go ahead and "Knit HTML".
+
+Notice how the markdown is rendered similar to as before + **R code chunks** are surrounded by 3 backticks and `{r LABEL}`. These are evaluated and return the output text in the case of `summary(cars)` and the output plot in the case of `plot(pressure)`.
+
+Notice how the code `plot(pressure)` is not shown in the HTML output because of the R code chunk option `echo=FALSE`.
+
+**Before we continue exploring Rmarkdown**, let's sync this the .rmd and .html to github.com. Enter a message like "added index" and click on "Commit and Sync gh-pages". This will update <https://github.com/USER/my-project>, and now you can also see your project website with a default `index.html` viewable at <http://USER.github.io/my-project>
+
+## Resources
+
+Were you hoping for an RStudio Cheatsheet? Here it is: 
+
+- [rmarkdown-cheatsheet.pdf](http://www.rstudio.com/wp-content/uploads/2016/03/rmarkdown-cheatsheet-2.0.pdf)
+- <http://rmarkdown.rstudio.com>
+- [knitr in a knutshell - Karl Broman](http://kbroman.org/knitr_knutshell/)
+
+
+# Add your neighbor as a collaborator
+
+In github.com; we'll walk through this together. Then, practice more; make changes to their repo, and to their neighbor's. 
+
+# Wrapup
+
+
+
+# References
+
+- [ggplot2-cheatsheet-2.0.pdf](../cheatsheets/ggplot2-cheatsheet-2.0.pdf)
+- [Interactive Plots and Maps - Environmental Informatics](http://ucsb-bren.github.io/env-info/wk06_widgets.html)
+- [Graphs with ggplot2 - Cookbook for R](http://www.cookbook-r.com/Graphs/#graphs-with-ggplot2)
+- [ggplot2 Essentials - STHDA](http://www.sthda.com/english/wiki/ggplot2-essentials)
+- [NEON Working with Geospatial Data](http://neon-workwithdata.github.io/NEON-R-Spatio-Temporal-Data-and-Management-Intro/)
+
+
+
