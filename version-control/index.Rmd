@@ -360,8 +360,3 @@ Good resources:
 
 - [3-minute youtube video](https://www.youtube.com/watch?v=XdhuWDdu-rk)
 
-# Other resources
-
-- common git commands: [happy git with R - Jenny Bryan](http://happygitwithr.com/usage-git-cmds.html)
-
-
